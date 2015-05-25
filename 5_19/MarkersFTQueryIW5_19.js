@@ -115,7 +115,7 @@ function getData(Column) {
 		var dataQuer = $.get(queryurl,function(data) {
 			lonList.push(data.rows[i][0]);
 		});
-	};
+	}
 }
 			
 function dropdownFill(selectbox, data) {
@@ -125,7 +125,7 @@ function dropdownFill(selectbox, data) {
 			List.push(data.rows[i][0]);
 			addOption(selectbox, data.rows[i][0], data.rows[i][0]);
 		}
-	};
+	}
 }
 
 function addOption(selectbox,text, value){
@@ -152,7 +152,7 @@ function clickCat(){
 			FirmsBox. remove(i);
 		}
 		addOption(FirmsBox, "Browse Creative Firms", "1");
-	};
+	}
 }
 
 function CatUpdateHandler(data) {
@@ -182,7 +182,7 @@ function clickFirms(){
 			
 		}
 		storeLocationInfo(firms, latList, lonList, firmLoc);
-	};
+	}
 	
 	
 }
@@ -200,7 +200,7 @@ function storeLocationInfo(n,x,y,firmLoc) {
 	for(i=0; i < lonList.length; i++) {
 	firmLoc.push(y);
 	}
-
+}
 	
 function setMarkers(map, firmLoc) {
 	var image = { url: 'lightbulb.png',
@@ -223,7 +223,7 @@ function setMarkers(map, firmLoc) {
 			shape: shape,
 			title: firm[0]
 		});
-	}
+	};
 }
 			
 
@@ -252,12 +252,31 @@ function searchCriteria(Column, dataHandlerType) {
 			sendRequest("WHERE Niche ='" + selCat + "'GROUP BY LatDec, LonDec", Column, dataHandlerType);
 		}else { 
 			sendRequest("WHERE Niche ='" + selCat + "'AND Firms='" + SelFir + "'", Column, dataHandlerType);
-		};
-	};
+		}
+	}
+}
+
+function updateMap() {
+		
+	if(selCat == 0) {
+		layFirms.setMap(map);
+	}else if(selCat !=0){
+		subLayer = new google.maps.FusionTablesLayer({
+			query: {
+				select: locCol,
+				from: fTableID,
+				where:" Niche = '" +selCat + "'"
+			}
+			
+		});
+		subLayer.setMap(map);
+	}		
+		
 }
 
 
-function updateMap() {
+
+/*function updateMap() {
 		
 	if(selCat !=0) {
 		subLayer = new google.maps.FusionTablesLayer({
@@ -274,11 +293,7 @@ function updateMap() {
 		layFirms.setMap(map);
 	}		
 		
-}
+}*/
 
-
-
-
-	
 
 google.maps.event.addDomListener(window, 'load', initialize);
