@@ -13,7 +13,7 @@ function initialize() {
   
   map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: mapCenter,
-    zoom: 10
+    zoom: 8
   });
   
   
