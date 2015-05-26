@@ -15,8 +15,8 @@ html {
 	#panel {
 		position: absolute;
 		float: left;
-		bottom: 50px;
-		left: 200px;
+		top: 0px;
+		left: 0px;
 		margin-left: 0px;
 		z-index: 1;
 		background: rgba(164,71,71,0.6);
