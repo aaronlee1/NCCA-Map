@@ -49,4 +49,6 @@ html {
 		position absolute;
 		float: left;
 	}
-	
+	#maincontent {
+		display:none;
+	}
